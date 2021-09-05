@@ -40,26 +40,35 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      history: [{ squares: Array(9).fill(null), coordinate: { x: null, y: null } }],
+      history: [{ squares: Array(9).fill(null), coordinate: { x: null, y: null }, active: false }],
       xIsNext: true,
       stepNumber: 0,
     };
   }
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const history = this.state.history.slice(0, this.state.stepNumber + 1).map((_, index) => {
+      _.active = false;
+      return _;
+    });
     const current = history[history.length - 1];
     const squares = current.squares.slice();
+    const active = true;
     if (calculateWinner(squares) || squares[i]) return;
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     const coordinate = { x: Math.floor(i / 3) + 1, y: (i % 3) + 1 };
     this.setState({
-      history: history.concat([{ squares, coordinate }]),
+      history: history.concat([{ squares, coordinate, active }]),
       xIsNext: !this.state.xIsNext,
       stepNumber: history.length,
     });
   }
   jumpTo(step) {
+    const history = this.state.history.slice().map((_, index) => {
+      _.active = step === index;
+      return _;
+    });
     this.setState({
+      history,
       stepNumber: step,
       xIsNext: step % 2 === 0,
     });
@@ -74,6 +83,7 @@ class Game extends React.Component {
       return (
         <li key={move}>
           <button
+            style={{ fontWeight: history[move].active ? 'bold' : '' }}
             onClick={() => {
               this.jumpTo(move);
             }}
