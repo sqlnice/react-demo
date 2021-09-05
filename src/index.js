@@ -4,7 +4,7 @@ import './index.css';
 
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button className={`square ${props.active ? 'active-square' : ''}`} onClick={props.onClick}>
       {props.value}
     </button>
   );
@@ -12,7 +12,14 @@ function Square(props) {
 
 class Board extends React.Component {
   renderSquare(i) {
-    return <Square key={i} value={this.props.squares[i]} onClick={() => this.props.onClick(i)} />;
+    return (
+      <Square
+        key={i}
+        value={this.props.squares[i]}
+        active={this.props.winnerLine.includes(i)}
+        onClick={() => this.props.onClick(i)}
+      />
+    );
   }
   getCurRow(row) {
     return row * 3;
@@ -43,6 +50,7 @@ class Game extends React.Component {
       history: [{ squares: Array(9).fill(null), coordinate: { x: null, y: null }, active: false }],
       xIsNext: true,
       stepNumber: 0,
+      winnerLine: [],
     };
   }
   handleClick(i) {
@@ -53,13 +61,16 @@ class Game extends React.Component {
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     const active = true;
-    if (calculateWinner(squares) || squares[i]) return;
+    const { winner } = calculateWinner(squares);
+    if (winner || squares[i]) return;
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     const coordinate = { x: Math.floor(i / 3) + 1, y: (i % 3) + 1 };
+    const { winnerLine = [] } = calculateWinner(squares);
     this.setState({
       history: history.concat([{ squares, coordinate, active }]),
       xIsNext: !this.state.xIsNext,
       stepNumber: history.length,
+      winnerLine,
     });
   }
   jumpTo(step) {
@@ -71,12 +82,13 @@ class Game extends React.Component {
       history,
       stepNumber: step,
       xIsNext: step % 2 === 0,
+      winnerLine: [],
     });
   }
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
+    const { winner } = calculateWinner(current.squares);
     const moves = history.map((step, move) => {
       const rowColumn = move ? `行：${history[move].coordinate.x} 列：${history[move].coordinate.y}` : '';
       const desc = move ? `Go to move #${move}` : 'Go to game start';
@@ -102,7 +114,7 @@ class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
-          <Board squares={current.squares} onClick={(i) => this.handleClick(i)} />
+          <Board squares={current.squares} winnerLine={this.state.winnerLine} onClick={(i) => this.handleClick(i)} />
         </div>
         <div className="game-info">
           <div>{status}</div>
@@ -130,8 +142,10 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      const winnerLine = [a, b, c];
+      const winner = squares[a];
+      return { winner, winnerLine };
     }
   }
-  return null;
+  return { winner: false, winnerLine: [] };
 }

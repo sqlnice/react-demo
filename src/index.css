@@ -49,3 +49,6 @@ ul {
 .game-info {
   margin-left: 20px;
 }
+.active-square {
+  background-color: rgba(187, 239, 253, 0.3);
+}
