@@ -88,7 +88,7 @@ class Game extends React.Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const { winner } = calculateWinner(current.squares);
+    const { winner, winnerLine } = calculateWinner(current.squares);
     const moves = history.map((step, move) => {
       const rowColumn = move ? `行：${history[move].coordinate.x} 列：${history[move].coordinate.y}` : '';
       const desc = move ? `Go to move #${move}` : 'Go to game start';
@@ -106,7 +106,9 @@ class Game extends React.Component {
       );
     });
     let status;
-    if (winner) {
+    if (!current.squares.some((item) => item === null) && winnerLine.length === 0) {
+      status = 'a dead heat ~~';
+    } else if (winner) {
       status = 'Winner: ' + winner;
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
