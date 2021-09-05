@@ -1,6 +1,8 @@
 import React from 'react';
 import Board from './board';
 import { calculateWinner } from './util';
+import './index.css';
+
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
