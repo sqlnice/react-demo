@@ -5,11 +5,13 @@ import ReactDOM from 'react-dom';
 // import Render from './3_render';
 // import ComponentsAndProps from './4_components&Props';
 // import StateAndLifecycle from './5_state&Lifecycle';
-import HandingEvent from './6_handingEvent';
+// import HandingEvent from './6_handingEvent';
+import ConditionalRendering from './7_conditionalRendering';
 // ========================================
 
 // ReactDOM.render(<Game />, document.getElementById('root'));
 // ReactDOM.render(Jsx, document.getElementById('root'));
 // ReactDOM.render(<Render />, document.getElementById('root'));
 // ReactDOM.render(<ComponentsAndProps  />, document.getElementById('root'));
-ReactDOM.render(<HandingEvent />, document.getElementById('root'));
+// ReactDOM.render(<HandingEvent />, document.getElementById('root'));
+ReactDOM.render(<ConditionalRendering />, document.getElementById('root'));
