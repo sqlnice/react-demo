@@ -9,6 +9,7 @@ import ReactDOM from 'react-dom';
 // import ConditionalRendering from './7_conditionalRendering';
 // import ListAndKeys from './8_lists&Keys';
 import Forms from './9_forms';
+import LiftingStateUp from './10_liftingStateUp';
 // ========================================
 
 // ReactDOM.render(<Game />, document.getElementById('root'));
@@ -18,4 +19,5 @@ import Forms from './9_forms';
 // ReactDOM.render(<HandingEvent />, document.getElementById('root'));
 // ReactDOM.render(<ConditionalRendering />, document.getElementById('root'));
 // ReactDOM.render(<ListAndKeys numbers="[1, 2, 3, 4, 5]" />, document.getElementById('root'));
-ReactDOM.render(<Forms numbers="[1, 2, 3, 4, 5]" />, document.getElementById('root'));
+ReactDOM.render(<Forms />, document.getElementById('root'));
+ReactDOM.render(<LiftingStateUp />, document.getElementById('root'));
