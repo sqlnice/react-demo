@@ -8,8 +8,9 @@ import ReactDOM from 'react-dom';
 // import HandingEvent from './6_handingEvent';
 // import ConditionalRendering from './7_conditionalRendering';
 // import ListAndKeys from './8_lists&Keys';
-import Forms from './9_forms';
-import LiftingStateUp from './10_liftingStateUp';
+// import Forms from './9_forms';
+// import LiftingStateUp from './10_liftingStateUp';
+import CompositionVsInheritance from './11_compositionVsInheritance';
 // ========================================
 
 // ReactDOM.render(<Game />, document.getElementById('root'));
@@ -19,5 +20,6 @@ import LiftingStateUp from './10_liftingStateUp';
 // ReactDOM.render(<HandingEvent />, document.getElementById('root'));
 // ReactDOM.render(<ConditionalRendering />, document.getElementById('root'));
 // ReactDOM.render(<ListAndKeys numbers="[1, 2, 3, 4, 5]" />, document.getElementById('root'));
-ReactDOM.render(<Forms />, document.getElementById('root'));
-ReactDOM.render(<LiftingStateUp />, document.getElementById('root'));
+// ReactDOM.render(<Forms />, document.getElementById('root'));
+// ReactDOM.render(<LiftingStateUp />, document.getElementById('root'));
+ReactDOM.render(<CompositionVsInheritance />, document.getElementById('root'));
