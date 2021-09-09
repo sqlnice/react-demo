@@ -10,7 +10,8 @@ import ReactDOM from 'react-dom';
 // import ListAndKeys from './8_lists&Keys';
 // import Forms from './9_forms';
 // import LiftingStateUp from './10_liftingStateUp';
-import CompositionVsInheritance from './11_compositionVsInheritance';
+// import CompositionVsInheritance from './11_compositionVsInheritance';
+import ThinkingInReact from './12_thinkingInReact';
 // ========================================
 
 // ReactDOM.render(<Game />, document.getElementById('root'));
@@ -22,4 +23,5 @@ import CompositionVsInheritance from './11_compositionVsInheritance';
 // ReactDOM.render(<ListAndKeys numbers="[1, 2, 3, 4, 5]" />, document.getElementById('root'));
 // ReactDOM.render(<Forms />, document.getElementById('root'));
 // ReactDOM.render(<LiftingStateUp />, document.getElementById('root'));
-ReactDOM.render(<CompositionVsInheritance />, document.getElementById('root'));
+// ReactDOM.render(<CompositionVsInheritance />, document.getElementById('root'));
+ReactDOM.render(<ThinkingInReact />, document.getElementById('root'));
